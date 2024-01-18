@@ -1,33 +1,38 @@
 package com.example.android_study;
 
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.sax.StartElementListener;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
 
-    // 동적 연결을 위한 선언
-    EditText et_id;
-    Button btn_id;
+    private Button btn_move;
+    private  EditText et_test;
+    private String str;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // 바인딩
-        et_id = findViewById(R.id.et_id);
-        btn_id = findViewById(R.id.btn_id);
+        btn_move = findViewById(R.id.btn_move);
+        et_test = findViewById(R.id.et_test);
 
-        // 버튼을 눌렀을 때 동작
-        btn_id.setOnClickListener(new View.OnClickListener() {
+        btn_move.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                et_id.setText("김미진");
+                str = et_test.getText().toString();
+                Intent intent = new Intent(MainActivity.this, SubActivity.class);
+                intent.putExtra("str", str);
+                startActivity(intent);  //액티비티 이동
             }
         });
+
     }
 }
