@@ -1,68 +1,64 @@
 package com.example.android_study;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.FileProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.fragment.app.FragmentTransaction;
 
-import android.Manifest;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
-import android.media.ExifInterface;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.Toast;
-
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-import com.gun0912.tedpermission.PermissionListener;
-import com.gun0912.tedpermission.TedPermission;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ArrayList<MainData> arrayList;
-    private MainAdapter mainAdapter;
-    private RecyclerView recyclerView;
-    private LinearLayoutManager linearLayoutManager;
+    Button btn1, btn2, btn3, btn4;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        recyclerView = (RecyclerView) findViewById(R.id.rv);
-        linearLayoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(linearLayoutManager);
+        btn1 = (Button) findViewById(R.id.btn_1);
+        btn2 = (Button) findViewById(R.id.btn_2);
+        btn3 = (Button) findViewById(R.id.btn_3);
+        btn4 = (Button) findViewById(R.id.btn_4);
 
-        arrayList = new ArrayList<>();
-
-        mainAdapter = new MainAdapter(arrayList);
-        recyclerView.setAdapter(mainAdapter);
-
-        Button btn_add = (Button) findViewById(R.id.btn_add);
-        btn_add.setOnClickListener(new View.OnClickListener() {
+        btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MainData mainData = new MainData(R.mipmap.ic_launcher,
-                        "안녕",
-                        "리사이클러뷰");
-                arrayList.add(mainData);
-                mainAdapter.notifyDataSetChanged();
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                Fragment1 fragment1 = new Fragment1();
+                transaction.replace(R.id.frame, fragment1);
+                transaction.commit();
+            }
+        });
+
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                Fragment2 fragment2 = new Fragment2();
+                transaction.replace(R.id.frame, fragment2);
+                transaction.commit();
+            }
+        });
+
+        btn3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                Fragment3 fragment3 = new Fragment3();
+                transaction.replace(R.id.frame, fragment3);
+                transaction.commit();
+            }
+        });
+
+        btn4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                Fragment4 fragment4 = new Fragment4();
+                transaction.replace(R.id.frame, fragment4);
+                transaction.commit();
             }
         });
     }
-
 }
