@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,41 +7,16 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/tv_hi1"
+        android:id="@+id/tv_state"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
+        android:text="Hello World!"
+        android:textSize="30sp"
         android:textColor="#7C4DFF"
         android:textStyle="bold"
-        android:text="안녕 처음이야"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tv_hi2"
-        android:layout_centerInParent="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="안녕 오랜만이야"/>
-
-    <TextView
-        android:id="@+id/tv_hi3"
-        android:layout_alignParentRight="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="안녕 무슨일이야"/>
-
-    <TextView
-        android:id="@+id/tv_hi4"
-        android:layout_alignParentBottom="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="안녕 무슨일이야"/>
-
-    <TextView
-        android:id="@+id/tv_hi5"
-        android:layout_above="@id/tv_hi2"
-        android:layout_centerInParent="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="안녕 무슨일이야"/>
-
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
