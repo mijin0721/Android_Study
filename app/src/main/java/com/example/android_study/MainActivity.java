@@ -2,33 +2,28 @@ package com.example.android_study;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.IntentFilter;
-import android.net.wifi.WifiManager;
+import android.net.Uri;
 import android.os.Bundle;
-import android.widget.TextView;
+import android.widget.MediaController;
+import android.widget.VideoView;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static TextView tv_state;
-    private NetworkReceiver receiver;
+    private VideoView videoView;
+    private MediaController mediaController;
+    private String videoURL = "https://www.pexels.com/ko-kr/video/1321208/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        tv_state = (TextView) findViewById(R.id.tv_state);
-
-        IntentFilter filter = new IntentFilter();
-        receiver = new NetworkReceiver();
-        filter.addAction(WifiManager.NETWORK_IDS_CHANGED_ACTION);
-        registerReceiver(receiver, filter);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
-        unregisterReceiver(receiver);
+        videoView = (VideoView) findViewById(R.id.videoView);
+        mediaController = new MediaController(this);
+        mediaController.setAnchorView(videoView);
+        Uri uri = Uri.parse(videoURL);
+        videoView.setMediaController(mediaController);
+        videoView.setVideoURI(uri);
+        videoView.start();
     }
 }
