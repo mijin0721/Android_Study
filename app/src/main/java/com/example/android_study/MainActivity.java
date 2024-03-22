@@ -5,46 +5,42 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.Toast;
+import android.widget.CheckBox;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private RadioGroup rb_gender;
-    private RadioButton rb_man, rb_woman;
+    private CheckBox chk_red, chk_blue, chk_green;
+    private TextView tv_result;
     private Button btn_result;
-    private String str_result;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        rb_gender = findViewById(R.id.rg_gender);
-        rb_man = findViewById(R.id.rb_man);
-        rb_woman = findViewById(R.id.rb_woman);
+        chk_red = findViewById(R.id.chk_red);
+        chk_blue = findViewById(R.id.rhk_blue);
+        chk_green = findViewById(R.id.chk_green);
+        tv_result = findViewById(R.id.tv_result);
         btn_result = findViewById(R.id.btn_result);
-
-        rb_gender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.rb_man) {
-                    str_result = "man";
-                } else if (i == R.id.rb_woman) {
-                    str_result = "woman";
-                }
-            }
-        });
 
         btn_result.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (str_result != null) {
-                    Toast.makeText(MainActivity.this, str_result, Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(MainActivity.this, "선택요망", Toast.LENGTH_SHORT).show();
+                String str_result = "";
+
+                if (chk_red.isChecked()) {
+                    str_result += chk_red.getText().toString() + " ";
                 }
+                if (chk_blue.isChecked()) {
+                    str_result += chk_blue.getText().toString() + " ";
+                }
+                if (chk_green.isChecked()) {
+                    str_result = chk_green.getText().toString() + " ";
+                }
+
+                tv_result.setText(str_result);
             }
         });
     }
